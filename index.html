@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Team Tracker | Monopoly Edition</title>
+  <title>Deal Breaker</title>
   <style>
+    * { box-sizing: border-box; }
     body {
-      font-family: Arial, sans-serif;
-      /* Live URL to a Monopoly board image */
-      background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('https://assets.nintendo.com/image/upload/q_auto:best/f_auto/dpr_2.0/store/software/switch/70010000069639/8248e2edec2e8c106a26cb174fd4ae108207cf21ffd6012704f60ef5540cb79c');
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      /* Classic dark overlay to let the card pop */
+      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url('https://assets.nintendo.com/image/upload/q_auto:best/f_auto/dpr_2.0/store/software/switch/70010000069639/8248e2edec2e8c106a26cb174fd4ae108207cf21ffd6012704f60ef5540cb79c');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -17,108 +18,97 @@
       align-items: center;
       min-height: 100vh;
       margin: 0;
+      padding: 20px;
       color: #fff;
     }
 
     .tracker-container {
       background-color: rgba(255, 255, 255, 0.95);
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(226, 27, 34, 0.6); /* Red glowing shadow */
       width: 100%;
-      max-width: 380px;
+      max-width: 450px;
       color: #333;
+      text-align: center;
     }
 
-    h2 {
-      text-align: center;
-      margin-top: 0;
-      color: #000;
+    h2 { 
+      margin-top: 0; 
+      color: #E21B22; /* Monopoly Red */
+      font-size: 36px; 
+      border-bottom: 3px solid #000; 
+      padding-bottom: 15px; 
+      text-transform: uppercase;
+      font-weight: 900;
+    }
+    
+    .action-box {
+      background-color: #ffe6e6;
+      border: 4px solid #E21B22; 
+      border-radius: 8px;
+      padding: 30px 15px;
+      margin-top: 25px;
+    }
+    
+    .action-title {
       font-size: 24px;
-      border-bottom: 3px solid #E21B22; 
-      padding-bottom: 10px;
+      font-weight: bold;
+      color: #000;
+      margin-bottom: 10px;
     }
 
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
+    .action-highlight { 
+      font-size: 32px; 
+      font-weight: 900; 
+      color: #E21B22; 
+      margin: 0; 
     }
 
-    input, select, button {
-      padding: 12px;
-      font-size: 16px;
+    .description {
+      margin-top: 25px;
+      background-color: #f8f9fa;
+      border-right: 5px solid #000;
+      padding: 15px;
+      font-size: 18px;
+      color: #333;
+      line-height: 1.6;
+      text-align: right;
       border-radius: 4px;
-      border: 1px solid #ccc;
     }
 
-    input[type="text"], input[type="number"], select {
-      background-color: #fdfdfd;
-    }
-
-    button {
-      background-color: #E21B22; 
-      color: white;
-      border: none;
-      cursor: pointer;
+    .instructions {
+      margin-top: 20px;
+      font-size: 16px;
+      color: #E21B22;
       font-weight: bold;
-      transition: background-color 0.2s ease;
     }
 
-    button:hover {
-      background-color: #b11317; 
-    }
-
-    #status {
-      margin-top: 15px;
-      font-weight: bold;
-      text-align: center;
+    @media (max-width: 768px) {
+      body { background-attachment: scroll; background-position: top center; }
     }
   </style>
 </head>
 <body>
 
   <div class="tracker-container">
-    <h2>Update Team Balance</h2>
-    <form id="leadForm">
-      <input type="text" name="teamColor" placeholder="Team Color (e.g., Red, Blue)" required>
-      <input type="number" name="amount" placeholder="Money Amount (M)" step="1" min="1" required>
-      <select name="action" required>
-        <option value="" disabled selected>Select Action...</option>
-        <option value="add">Add Cash</option>
-        <option value="reduce">Reduce Cash</option>
-      </select>
+    <h2>💥 Deal Breaker! 💥</h2>
+    
+    <div class="action-box">
+      <div class="action-title">Deal Breaker</div>
+      <div class="action-highlight">أسرق مجموعة كاملة!</div>
+    </div>
+    
+    <div class="description">
+      <strong>إيه اللي بيحصل دلوقتي؟</strong><br>
+      من حقك تاخد أي مجموعة أملاك كاملة من أي لاعب تاني في اللعبة وتبقى بتاعتك. غير لو معاه!
+      Just say no
+    </div>
 
-      <button type="submit" id="submitBtn">Submit Update</button>
-    </form>
-    <p id="status"></p>
+    <!-- <p class="instructions">
+      (وري الشاشة دي للّعيبة واسرق أملاكهم براحتك! 😎)
+    </p> -->
   </div>
-
-  <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwZBAWDiAETsf4Aax0RRqpBaENOeNUgFhneX_duZtcVEECrgO9FhTu9yaaR3m5Hn1h_/exec'; 
-    const form = document.getElementById('leadForm');
-    const status = document.getElementById('status');
-    const submitBtn = document.getElementById('submitBtn');
-
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      submitBtn.disabled = true;
-      status.textContent = 'Submitting...';
-
-      fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-        .then(response => {
-          status.textContent = 'Thank you! The sheet has been updated.';
-          status.style.color = 'green';
-          form.reset();
-          submitBtn.disabled = false;
-        })
-        .catch(error => {
-          status.textContent = 'Error submitting form. Please try again.';
-          status.style.color = 'red';
-          submitBtn.disabled = false;
-        });
-    });
-  </script>
 
 </body>
 </html>
